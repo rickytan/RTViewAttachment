@@ -1,11 +1,8 @@
-use_frameworks!
 
 target 'RTViewAttachment_Example' do
   pod 'RTViewAttachment', :path => '../'
 
   target 'RTViewAttachment_Tests' do
-    inherit! :search_paths
-
     
   end
 end

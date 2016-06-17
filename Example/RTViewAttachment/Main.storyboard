@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="whP-gf-Uak">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="whP-gf-Uak">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,8 +18,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="inputAccessoryView" destination="eVq-jF-NZV" id="VDi-CE-NiE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eVq-jF-NZV">
+                    <rect key="frame" x="0.0" y="0.0" width="272" height="36"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qr5-Pq-bpv">
+                            <rect key="frame" x="0.0" y="3" width="121" height="30"/>
+                            <state key="normal" title="SearchBar"/>
+                            <connections>
+                                <action selector="onInsertSearchBar:" destination="whP-gf-Uak" eventType="touchUpInside" id="MEg-Sg-uw6"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dr4-1J-Bx7">
+                            <rect key="frame" x="151" y="3" width="121" height="30"/>
+                            <state key="normal" title="Image"/>
+                            <connections>
+                                <action selector="onInsertImage:" destination="whP-gf-Uak" eventType="touchUpInside" id="fGd-fh-l3e"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Qr5-Pq-bpv" firstAttribute="centerY" secondItem="eVq-jF-NZV" secondAttribute="centerY" id="0yQ-Pj-N2d"/>
+                        <constraint firstItem="Dr4-1J-Bx7" firstAttribute="centerY" secondItem="eVq-jF-NZV" secondAttribute="centerY" id="43J-3w-0F3"/>
+                        <constraint firstItem="Dr4-1J-Bx7" firstAttribute="width" secondItem="Qr5-Pq-bpv" secondAttribute="width" id="5I0-ST-NuZ"/>
+                        <constraint firstItem="Qr5-Pq-bpv" firstAttribute="leading" secondItem="eVq-jF-NZV" secondAttribute="leading" id="CeU-VN-BdQ"/>
+                        <constraint firstAttribute="height" constant="36" id="T0X-44-gaw"/>
+                        <constraint firstItem="Dr4-1J-Bx7" firstAttribute="leading" secondItem="Qr5-Pq-bpv" secondAttribute="trailing" constant="30" id="eMd-Jx-9j1"/>
+                        <constraint firstAttribute="trailing" secondItem="Dr4-1J-Bx7" secondAttribute="trailing" id="kpJ-yF-YCm"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="305" y="433"/>
         </scene>
