@@ -33,6 +33,22 @@ static NSString *const RTAttachmentPlaceholderString = @"\uFFFC";
     [UIPasteboard generalPasteboard].string = attrString.string;
 }
 
+- (NSString *)text
+{
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithAttributedString:self.textStorage];
+    [attrString enumerateAttribute:NSAttachmentAttributeName
+                           inRange:NSMakeRange(0, attrString.length)
+                           options:NSAttributedStringEnumerationReverse
+                        usingBlock:^(id value, NSRange range, BOOL * stop) {
+                            if ([value isKindOfClass:[RTViewAttachment class]]) {
+                                RTViewAttachment *attach = (RTViewAttachment *)value;
+                                [attrString replaceCharactersInRange:range
+                                                          withString:attach.placeholderText ?: @""];
+                            }
+                        }];
+    return attrString.string;
+}
+
 @end
 
 @interface RTViewAttachmentLayoutManagerInternal : NSLayoutManager
@@ -46,7 +62,7 @@ static NSString *const RTAttachmentPlaceholderString = @"\uFFFC";
                            atPoint:origin];
     [self.textStorage enumerateAttribute:NSAttachmentAttributeName
                                  inRange:glyphsToShow
-                                 options:0
+                                 options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
                               usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
                                   if ([value isKindOfClass:[RTViewAttachment class]]) {
                                       RTViewAttachment *attach = (RTViewAttachment *)value;
@@ -54,7 +70,8 @@ static NSString *const RTAttachmentPlaceholderString = @"\uFFFC";
                                                                     inTextContainer:[self textContainerForGlyphAtIndex:range.location
                                                                                                         effectiveRange:NULL]];
                                       rect.origin.x += origin.x;
-                                      rect.origin.y += origin.y;
+                                      rect.origin.y += origin.y + (rect.size.height - attach.attachedView.bounds.size.height);
+                                      rect.size.height = attach.attachedView.bounds.size.height;
                                       attach.attachedView.frame = rect;
                                       attach.attachedView.hidden = NO;
                                   }
@@ -129,14 +146,17 @@ static NSString *const RTAttachmentPlaceholderString = @"\uFFFC";
 
 - (void)onKeyboardShow:(NSNotification *)notification
 {
+    if (!self.textView.isFirstResponder)
+        return;
+
     CGRect frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
     NSInteger curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
 
-    frame = [self.textView convertRect:frame
-                              fromView:nil];
+    frame = [self convertRect:frame
+                     fromView:nil];
     UIEdgeInsets inset = self.textView.contentInset;
-    inset.bottom = self.textView.frame.size.height - frame.origin.y;
+    inset.bottom = self.textView.frame.size.height - frame.origin.y + self.textView.frame.origin.y;
 
     [UIView animateWithDuration:duration
                           delay:0
@@ -151,6 +171,9 @@ static NSString *const RTAttachmentPlaceholderString = @"\uFFFC";
 
 - (void)onKeyboardHide:(NSNotification *)notification
 {
+    if (!self.isFirstResponder)
+        return;
+    
     //    CGRect frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
     NSInteger curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
@@ -238,8 +261,9 @@ static NSString *const RTAttachmentPlaceholderString = @"\uFFFC";
                                       NSFontAttributeName: self.font,
                                       NSParagraphStyleAttributeName: self.paragraphStyle}
                               range:self.textStorage.editedRange];
-    self.selectedRange = NSMakeRange(self.textStorage.editedRange.location + self.textStorage.editedRange.length, 0);
+    NSRange range = NSMakeRange(MIN(self.textStorage.editedRange.location + self.textStorage.editedRange.length, self.textStorage.length), 0);
     [self.textStorage endEditing];
+    self.selectedRange = range;
 }
 
 
@@ -256,8 +280,9 @@ static NSString *const RTAttachmentPlaceholderString = @"\uFFFC";
                                       NSFontAttributeName: self.font,
                                       NSParagraphStyleAttributeName: self.paragraphStyle}
                               range:self.textStorage.editedRange];
-    self.selectedRange = NSMakeRange(self.textStorage.editedRange.location + self.textStorage.editedRange.length, 0);
+    NSRange range = NSMakeRange(self.textStorage.editedRange.location + self.textStorage.editedRange.length, 0);
     [self.textStorage endEditing];
+    self.selectedRange = range;
 }
 
 - (void)removeViewAttachment:(RTViewAttachment *)attachment

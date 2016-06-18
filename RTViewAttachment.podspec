@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RTViewAttachment'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'A solution for attaching a `UIView` to a text editor'
   s.description      = <<-DESC
 Since **iOS 7**, developers can attach a `NSTextAttachemnt` to a `UITextView`, and it will display as an image. What if I want to attach a `UIView` to a text editor, and it can layout with all other text?

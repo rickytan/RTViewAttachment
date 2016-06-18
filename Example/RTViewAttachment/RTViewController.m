@@ -30,6 +30,12 @@
 
     self.textView.textContainerInset = UIEdgeInsetsMake(6, 16, 6, 16);
     self.textView.font = [UIFont systemFontOfSize:24.f];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
     [self.textView becomeFirstResponder];
 }
 
@@ -46,7 +52,9 @@
 }
 
 - (IBAction)onInsertSearchBar:(id)sender {
-    [self.textView insertViewAttachment:[[RTViewAttachment alloc] initWithView:[[UISearchBar alloc] init]
+    UISearchBar *bar = [[UISearchBar alloc] init];
+    [bar sizeToFit];
+    [self.textView insertViewAttachment:[[RTViewAttachment alloc] initWithView:bar
                                                                placeholderText:@"[searchbar]"
                                                                      fullWidth:YES]];
 }
