@@ -307,8 +307,18 @@ shouldChangeTextInRange:(NSRange)range
                                   usingBlock:^(id value, NSRange range, BOOL * stop) {
                                       if ([value isKindOfClass:[RTViewAttachment class]]) {
                                           RTViewAttachment *attachment = (RTViewAttachment *)value;
+                                          if ([self.delegate respondsToSelector:@selector(attachmentTextView:willDeleteAttachment:)]) {
+                                              [self.delegate attachmentTextView:self
+                                                           willDeleteAttachment:attachment];
+                                          }
+
                                           [self.textStorage removeAttribute:NSAttachmentAttributeName range:range];
                                           [attachment.attachedView removeFromSuperview];
+
+                                          if ([self.delegate respondsToSelector:@selector(attachmentTextView:didDeleteAttachment:)]) {
+                                              [self.delegate attachmentTextView:self
+                                                            didDeleteAttachment:attachment];
+                                          }
                                       }
                                   }];
     }

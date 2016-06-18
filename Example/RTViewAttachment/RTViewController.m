@@ -11,7 +11,7 @@
 
 #import "RTViewController.h"
 
-@interface RTViewController () <UITextViewDelegate>
+@interface RTViewController () <RTViewAttachmentTextViewDelegate>
 @property (nonatomic, assign) IBOutlet RTViewAttachmentTextView *textView;
 @property (nonatomic, assign) IBOutlet UIView *inputAccessoryView;
 @end
@@ -56,9 +56,12 @@
                                                                placeholderText:@"[image name='dog']"]];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+#pragma mark - RTViewAttachment Delegate
+
+- (BOOL)attachmentTextView:(RTViewAttachmentTextView *)attachmentTextView
+   shouldDeleteAttachments:(NSArray<RTViewAttachment *> *)attachments
 {
-    
+    return YES;
 }
 
 @end

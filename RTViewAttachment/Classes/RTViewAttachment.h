@@ -25,6 +25,10 @@
  */
 @property (nonatomic, assign, getter=isFullWidth) BOOL fullWidth;
 
+@property (nonatomic, strong) id userInfo;
+@property (nonatomic, assign) NSInteger tag;
+
+
 - (instancetype)initWithView:(UIView *)view;
 - (instancetype)initWithView:(UIView *)view
              placeholderText:(NSString *)text;

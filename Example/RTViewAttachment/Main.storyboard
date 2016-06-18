@@ -21,7 +21,7 @@
             </objects>
             <point key="canvasLocation" x="-394" y="433"/>
         </scene>
-        <!--Editor-->
+        <!--Delegate-->
         <scene sceneID="wQg-tq-qST">
             <objects>
                 <viewController id="whP-gf-Uak" customClass="RTViewController" sceneMemberID="viewController">
@@ -36,6 +36,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKO-LQ-LG4" customClass="RTViewAttachmentTextView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="whP-gf-Uak" id="Aza-hv-7fi"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
