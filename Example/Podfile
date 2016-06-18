@@ -2,7 +2,4 @@
 target 'RTViewAttachment_Example' do
   pod 'RTViewAttachment', :path => '../'
 
-  target 'RTViewAttachment_Tests' do
-    
-  end
 end

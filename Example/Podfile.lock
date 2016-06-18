@@ -1,5 +1,5 @@
 PODS:
-  - RTViewAttachment (0.1.0)
+  - RTViewAttachment (0.1.1)
 
 DEPENDENCIES:
   - RTViewAttachment (from `../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  RTViewAttachment: 8027285b015b899caad1d931b2f9bbc10c73eece
+  RTViewAttachment: d5000343777e60cc77202f7279873134e3233d89
 
 COCOAPODS: 0.39.0
