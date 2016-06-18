@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RTViewAttachmentLayoutManager.h"
 
 @interface RTViewAttachment : NSTextAttachment
 

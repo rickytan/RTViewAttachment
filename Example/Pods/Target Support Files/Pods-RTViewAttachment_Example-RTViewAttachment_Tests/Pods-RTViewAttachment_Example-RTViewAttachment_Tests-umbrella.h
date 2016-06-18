@@ -1,6 +1,0 @@
-#import <UIKit/UIKit.h>
-
-
-FOUNDATION_EXPORT double Pods_RTViewAttachment_Example_RTViewAttachment_TestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_RTViewAttachment_Example_RTViewAttachment_TestsVersionString[];
-

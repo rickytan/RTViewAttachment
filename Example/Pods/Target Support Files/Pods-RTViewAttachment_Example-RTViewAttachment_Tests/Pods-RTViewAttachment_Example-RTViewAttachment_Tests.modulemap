@@ -1,6 +1,0 @@
-framework module Pods_RTViewAttachment_Example_RTViewAttachment_Tests {
-  umbrella header "Pods-RTViewAttachment_Example-RTViewAttachment_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}

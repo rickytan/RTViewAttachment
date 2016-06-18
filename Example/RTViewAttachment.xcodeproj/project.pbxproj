@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A59E6C1CB26E06D7695DE01 /* libPods-RTViewAttachment_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 537DC8FD4C25C1D0E8533339 /* libPods-RTViewAttachment_Example.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -22,7 +23,6 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		9C2D40171D13D9B700435796 /* Launchscreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C2D40161D13D9B700435796 /* Launchscreen.storyboard */; };
-		BC35E58D6311AC4EC7AABB66 /* Pods_RTViewAttachment_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B0028C99F65ADAC0E020D93 /* Pods_RTViewAttachment_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,7 @@
 		056635EDB30BA7AFCD969DBC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		2CB33DF7DEDF4ACB10378DEC /* RTViewAttachment.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RTViewAttachment.podspec; path = ../RTViewAttachment.podspec; sourceTree = "<group>"; };
 		3818E6242D3AD8FD537B7217 /* Pods-RTViewAttachment_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTViewAttachment_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RTViewAttachment_Example/Pods-RTViewAttachment_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		5B0028C99F65ADAC0E020D93 /* Pods_RTViewAttachment_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RTViewAttachment_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		537DC8FD4C25C1D0E8533339 /* libPods-RTViewAttachment_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RTViewAttachment_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B067FF24776F1E122A47072 /* Pods-RTViewAttachment_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTViewAttachment_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RTViewAttachment_Example/Pods-RTViewAttachment_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* RTViewAttachment_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTViewAttachment_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -73,7 +73,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				BC35E58D6311AC4EC7AABB66 /* Pods_RTViewAttachment_Example.framework in Frameworks */,
+				2A59E6C1CB26E06D7695DE01 /* libPods-RTViewAttachment_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,7 +118,7 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				5B0028C99F65ADAC0E020D93 /* Pods_RTViewAttachment_Example.framework */,
+				537DC8FD4C25C1D0E8533339 /* libPods-RTViewAttachment_Example.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

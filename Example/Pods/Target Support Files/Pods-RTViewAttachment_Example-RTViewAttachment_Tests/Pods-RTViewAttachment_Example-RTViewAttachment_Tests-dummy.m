@@ -1,5 +1,0 @@
-#import <Foundation/Foundation.h>
-@interface PodsDummy_Pods_RTViewAttachment_Example_RTViewAttachment_Tests : NSObject
-@end
-@implementation PodsDummy_Pods_RTViewAttachment_Example_RTViewAttachment_Tests
-@end

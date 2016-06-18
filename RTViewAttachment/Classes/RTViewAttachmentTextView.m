@@ -35,6 +35,35 @@ static NSString *const RTAttachmentPlaceholderString = @"\uFFFC";
 
 @end
 
+@interface RTViewAttachmentLayoutManagerInternal : NSLayoutManager
+@end
+
+@implementation RTViewAttachmentLayoutManagerInternal
+
+- (void)drawGlyphsForGlyphRange:(NSRange)glyphsToShow atPoint:(CGPoint)origin
+{
+    [super drawGlyphsForGlyphRange:glyphsToShow
+                           atPoint:origin];
+    [self.textStorage enumerateAttribute:NSAttachmentAttributeName
+                                 inRange:glyphsToShow
+                                 options:0
+                              usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
+                                  if ([value isKindOfClass:[RTViewAttachment class]]) {
+                                      RTViewAttachment *attach = (RTViewAttachment *)value;
+                                      CGRect rect = [self boundingRectForGlyphRange:range
+                                                                    inTextContainer:[self textContainerForGlyphAtIndex:range.location
+                                                                                                        effectiveRange:NULL]];
+                                      rect.origin.x += origin.x;
+                                      rect.origin.y += origin.y;
+                                      attach.attachedView.frame = rect;
+                                      attach.attachedView.hidden = NO;
+                                  }
+                              }];
+}
+
+@end
+
+
 @interface RTViewAttachmentTextView () <UITextViewDelegate>
 @property (nonatomic, strong) NSTextStorage *textStorage;
 @property (nonatomic, strong) NSLayoutManager *manager;
@@ -57,7 +86,7 @@ static NSString *const RTAttachmentPlaceholderString = @"\uFFFC";
     self.textStorage = [[NSTextStorage alloc] initWithString:@""
                                                   attributes:@{NSFontAttributeName: self.font,
                                                                NSParagraphStyleAttributeName: self.paragraphStyle}];
-    self.manager = [[RTViewAttachmentLayoutManager alloc] init];
+    self.manager = [[RTViewAttachmentLayoutManagerInternal alloc] init];
 
     [self.textStorage addLayoutManager:self.manager];
     [self.manager addTextContainer:container];
@@ -201,7 +230,7 @@ static NSString *const RTAttachmentPlaceholderString = @"\uFFFC";
 {
     attachment.attachedView.hidden = YES;
     [self.textView addSubview:attachment.attachedView];
-    
+
     [self.textStorage beginEditing];
     [self.textStorage replaceCharactersInRange:self.selectedRange
                                     withString:RTAttachmentPlaceholderString];
@@ -219,7 +248,7 @@ static NSString *const RTAttachmentPlaceholderString = @"\uFFFC";
 {
     attachment.attachedView.hidden = YES;
     [self.textView addSubview:attachment.attachedView];
-    
+
     [self.textStorage beginEditing];
     [self.textStorage replaceCharactersInRange:NSMakeRange(index, 0)
                                     withString:RTAttachmentPlaceholderString];
@@ -255,23 +284,34 @@ shouldChangeTextInRange:(NSRange)range
  replacementText:(NSString *)text
 {
     __block BOOL shouldChange = YES;
+    NSMutableArray <RTViewAttachment *> *arr = [NSMutableArray array];
     [self.textStorage enumerateAttribute:NSAttachmentAttributeName
                                  inRange:range
                                  options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
                               usingBlock:^(id value, NSRange range, BOOL * stop) {
                                   if ([value isKindOfClass:[RTViewAttachment class]]) {
                                       RTViewAttachment *attachment = (RTViewAttachment *)value;
-                                      if (![self.delegate respondsToSelector:@selector(attachmentTextView:shouldDeleteAttachment:)] ||
-                                          [self.delegate attachmentTextView:self shouldDeleteAttachment:attachment]) {
-                                          [self.textStorage removeAttribute:NSAttachmentAttributeName
-                                                                      range:range];
-                                          [attachment.attachedView removeFromSuperview];
-                                      }
-                                      else {
-                                          shouldChange = NO;
-                                      }
+                                      [arr addObject:attachment];
                                   }
                               }];
+    if (arr.count) {
+        shouldChange = (![self.delegate respondsToSelector:@selector(attachmentTextView:shouldDeleteAttachments:)] ||
+                        [self.delegate attachmentTextView:self
+                                  shouldDeleteAttachments:[NSArray arrayWithArray:arr]]);
+    }
+    if (shouldChange) {
+        arr = nil;
+        [self.textStorage enumerateAttribute:NSAttachmentAttributeName
+                                     inRange:range
+                                     options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
+                                  usingBlock:^(id value, NSRange range, BOOL * stop) {
+                                      if ([value isKindOfClass:[RTViewAttachment class]]) {
+                                          RTViewAttachment *attachment = (RTViewAttachment *)value;
+                                          [self.textStorage removeAttribute:NSAttachmentAttributeName range:range];
+                                          [attachment.attachedView removeFromSuperview];
+                                      }
+                                  }];
+    }
     return shouldChange;
 }
 

@@ -13,7 +13,8 @@
 
 @protocol RTViewAttachmentTextViewDelegate <NSObject>
 @optional
-- (BOOL)attachmentTextView:(RTViewAttachmentTextView *)attachmentTextView shouldDeleteAttachment:(RTViewAttachment *)attachment;
+- (BOOL)attachmentTextView:(RTViewAttachmentTextView *)attachmentTextView shouldDeleteAttachments:(NSArray <RTViewAttachment *> *)attachments;
+
 - (void)attachmentTextView:(RTViewAttachmentTextView *)attachmentTextView willDeleteAttachment:(RTViewAttachment *)attachment;
 - (void)attachmentTextView:(RTViewAttachmentTextView *)attachmentTextView didDeleteAttachment:(RTViewAttachment *)attachment;
 

@@ -1,4 +1,3 @@
-use_frameworks!
 
 target 'RTViewAttachment_Example' do
   pod 'RTViewAttachment', :path => '../'
