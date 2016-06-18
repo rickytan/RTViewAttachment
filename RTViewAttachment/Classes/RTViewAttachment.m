@@ -58,6 +58,14 @@
     return [NSAttributedString attributedStringWithAttachment:self];
 }
 
+- (NSAttributedString *)attributedStringWithAttributes:(NSDictionary<NSString *,id> *)attributes
+{
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithAttributedString:[NSAttributedString attributedStringWithAttachment:self]];
+    [attrString addAttributes:attributes
+                        range:NSMakeRange(0, attrString.length)];
+    return [[NSAttributedString alloc] initWithAttributedString:attrString];
+}
+
 #pragma mark - Overrides
 
 - (UIImage *)imageForBounds:(CGRect)imageBounds textContainer:(NSTextContainer *)textContainer characterIndex:(NSUInteger)charIndex

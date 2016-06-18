@@ -1,0 +1,6 @@
+framework module RTViewAttachment {
+  umbrella header "RTViewAttachment-umbrella.h"
+
+  export *
+  module * { export * }
+}

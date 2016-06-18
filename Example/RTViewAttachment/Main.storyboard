@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="whP-gf-Uak">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="g4O-65-iys">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="kuR-zt-mjO">
+            <objects>
+                <navigationController id="g4O-65-iys" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VqP-07-X2d">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="whP-gf-Uak" kind="relationship" relationship="rootViewController" id="OhC-id-RkW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CFK-op-9hX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-394" y="433"/>
+        </scene>
+        <!--Editor-->
         <scene sceneID="wQg-tq-qST">
             <objects>
                 <viewController id="whP-gf-Uak" customClass="RTViewController" sceneMemberID="viewController">
@@ -16,10 +32,35 @@
                     <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKO-LQ-LG4" customClass="RTViewAttachmentTextView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xKO-LQ-LG4" firstAttribute="top" secondItem="TpU-gO-2f1" secondAttribute="top" id="kaV-i2-png"/>
+                            <constraint firstAttribute="trailing" secondItem="xKO-LQ-LG4" secondAttribute="trailing" id="n9B-rB-0Ix"/>
+                            <constraint firstItem="Mvr-aV-6Um" firstAttribute="top" secondItem="xKO-LQ-LG4" secondAttribute="bottom" id="tHa-vV-G0q"/>
+                            <constraint firstItem="xKO-LQ-LG4" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" id="xD8-WA-Xbe"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Editor" id="n6b-9e-kgd">
+                        <barButtonItem key="leftBarButtonItem" title="Prepend" id="FgQ-4i-IFx">
+                            <connections>
+                                <action selector="onPrepend:" destination="whP-gf-Uak" id="Nlm-xh-Xtf"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Append" id="m6Z-2O-M2O">
+                            <connections>
+                                <action selector="onAppend:" destination="whP-gf-Uak" id="1SG-Gx-GAB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="inputAccessoryView" destination="eVq-jF-NZV" id="VDi-CE-NiE"/>
+                        <outlet property="textView" destination="xKO-LQ-LG4" id="PDg-Qg-k3e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -41,7 +82,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="Qr5-Pq-bpv" firstAttribute="centerY" secondItem="eVq-jF-NZV" secondAttribute="centerY" id="0yQ-Pj-N2d"/>

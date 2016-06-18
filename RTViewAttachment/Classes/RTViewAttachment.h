@@ -26,9 +26,6 @@
  */
 @property (nonatomic, assign, getter=isFullWidth) BOOL fullWidth;
 
-@property (nonatomic, readonly, strong) NSAttributedString *attributedString;
-
-
 - (instancetype)initWithView:(UIView *)view;
 - (instancetype)initWithView:(UIView *)view
              placeholderText:(NSString *)text;
