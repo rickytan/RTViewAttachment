@@ -17,7 +17,7 @@ Here comes a solution. This project is based on `NSTextAttachment`, and no priva
                        DESC
 
   s.homepage         = 'https://github.com/rickytan/RTViewAttachment'
-  s.screenshots      = 'https://github.com/rickytan/RTViewAttachment/raw/master/Screenshot/1.png'
+  s.screenshots      = 'https://raw.githubusercontent.com/rickytan/RTViewAttachment/master/Screenshot/1.png'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Ricky Tan' => 'ricky.tan.xin@gmail.com' }
   s.source           = { :git => 'https://github.com/rickytan/RTViewAttachment.git', :tag => s.version.to_s }
